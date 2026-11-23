@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="data:," />
+    <title>紅の檻－蝶</title>
+    <meta name="description" content="『紅の檻－蝶』特設ページ。動画・曲・歌詞を掲載しています。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="紅の檻－蝶" />
+    <meta property="og:title" content="紅の檻－蝶" />
+    <meta property="og:description" content="『紅の檻－蝶』特設ページ。動画・曲・歌詞を掲載しています。" />
+    <meta property="og:image" content="poster.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="紅の檻－蝶" />
+    <meta name="twitter:description" content="『紅の檻－蝶』特設ページ。動画・曲・歌詞を掲載しています。" />
+    <meta name="twitter:image" content="poster.jpg" />
+    <link rel="preload" as="font" type="font/woff2" href="shippori-600.woff2" />
+    <link rel="preload" as="font" type="font/woff2" href="shippori-400.woff2" />
+    <style>
+      /* フォントはページと同じ場所から読み込む（外部サーバーへ取りに行かない） */
+      @font-face {
+        font-family: "Shippori Mincho B1";
+        font-style: normal; font-weight: 400; font-display: swap;
+        src: url(shippori-400.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Shippori Mincho B1";
+        font-style: normal; font-weight: 600; font-display: swap;
+        src: url(shippori-600.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Cormorant Garamond";
+        font-style: normal; font-weight: 400; font-display: swap;
+        src: url(cormorant-400.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Cormorant Garamond";
+        font-style: italic; font-weight: 400; font-display: swap;
+        src: url(cormorant-italic-400.woff2) format("woff2");
+      }
+      :root {
+        --bg: #150b24;
+        --bg-deep: #0d0618;
+        --ink: #efe7f7;
+        --ink-soft: #c9b8de;
+        --ink-faint: #9a86b8;
+        --crimson: #e5486c;
+        --crimson-soft: #ff7d9c;
+        --violet: #8b6fd8;
+        --line: rgba(201, 184, 222, 0.22);
+        --panel: rgba(38, 22, 66, 0.55);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(1100px 600px at 85% -10%, rgba(139, 111, 216, 0.28), transparent 60%),
+          radial-gradient(900px 700px at -10% 30%, rgba(229, 72, 108, 0.12), transparent 55%),
+          radial-gradient(700px 500px at 50% 110%, rgba(90, 50, 160, 0.25), transparent 60%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+        background-attachment: fixed;
+        color: var(--ink);
+        font-family: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", serif;
+        line-height: 1.9;
+        overflow-x: hidden;
+      }
+
+      /* ---- drifting light & butterflies ---- */
+      .sky { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+      .bokeh {
+        position: absolute; border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 214, 235, 0.5) 0%, rgba(190, 150, 255, 0.18) 55%, transparent 72%);
+        filter: blur(2px);
+        animation: drift 16s ease-in-out infinite alternate;
+      }
+      .bokeh.b1 { width: 90px; height: 90px; top: 8%; left: 6%; }
+      .bokeh.b2 { width: 46px; height: 46px; top: 22%; right: 12%; animation-duration: 20s; animation-delay: -6s; }
+      .bokeh.b3 { width: 64px; height: 64px; top: 58%; left: 3%; animation-duration: 22s; animation-delay: -11s; opacity: 0.7; }
+      .bokeh.b4 { width: 34px; height: 34px; top: 74%; right: 6%; animation-duration: 14s; animation-delay: -3s; }
+      .bokeh.b5 { width: 120px; height: 120px; top: 40%; right: -30px; animation-duration: 26s; animation-delay: -15s; opacity: 0.55; }
+      @keyframes drift {
+        from { transform: translate3d(0, 0, 0) scale(1); }
+        to { transform: translate3d(24px, -38px, 0) scale(1.12); }
+      }
+      .bfly { position: absolute; opacity: 0.85; animation: flutter 13s ease-in-out infinite; }
+      .bfly svg { display: block; filter: drop-shadow(0 0 10px rgba(178, 140, 255, 0.75)); }
+      .bfly.f1 { top: 16%; right: 18%; animation-delay: -4s; }
+      .bfly.f2 { top: 64%; left: 8%; animation-duration: 17s; animation-delay: -9s; opacity: 0.6; }
+      @keyframes flutter {
+        0% { transform: translate(0, 0) rotate(-6deg); }
+        35% { transform: translate(-26px, -30px) rotate(5deg); }
+        70% { transform: translate(14px, -12px) rotate(-3deg); }
+        100% { transform: translate(0, 0) rotate(-6deg); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .bokeh, .bfly { animation: none; }
+        html { scroll-behavior: auto; }
+      }
+
+      main { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 0 20px 72px; }
+
+      /* ---- title ---- */
+      header { text-align: center; padding: 64px 0 8px; }
+      h1 {
+        margin: 0;
+        font-size: clamp(42px, 9vw, 64px);
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-indent: 0.14em;
+        line-height: 1.35;
+        text-shadow: 0 0 34px rgba(229, 72, 108, 0.45), 0 0 90px rgba(139, 111, 216, 0.5);
+      }
+      .rule {
+        width: 148px; height: 1px; margin: 26px auto 0;
+        background: linear-gradient(90deg, transparent, var(--crimson-soft), transparent);
+        position: relative;
+      }
+      .rule::after {
+        content: ""; position: absolute; left: 50%; top: -3px; width: 7px; height: 7px;
+        transform: translateX(-50%) rotate(45deg);
+        background: var(--crimson-soft);
+        box-shadow: 0 0 10px rgba(255, 125, 156, 0.9);
+      }
+      .song-credits {
+        margin: 22px 0 0; font-size: 13.5px; color: var(--ink-faint); letter-spacing: 0.08em;
+      }
+      .song-credits span { white-space: nowrap; }
+      .song-credits .sep { margin: 0 0.55em; color: rgba(154, 134, 184, 0.5); }
+
+      /* ---- video ---- */
+      .video-wrap { margin-top: 40px; }
+      .video-frame {
+        border-radius: 6px;
+        padding: 1px;
+        background: linear-gradient(160deg, rgba(255, 125, 156, 0.55), rgba(139, 111, 216, 0.4) 45%, rgba(255, 255, 255, 0.08));
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), 0 0 60px rgba(120, 70, 200, 0.28);
+      }
+      .video-frame video {
+        display: block; width: 100%; height: auto; border-radius: 5px; background: #000;
+      }
+      .spoken {
+        margin: 38px auto 0; text-align: center;
+        font-size: clamp(18px, 4.6vw, 22px); line-height: 2.3; letter-spacing: 0.12em;
+        color: var(--ink);
+      }
+      .spoken .last { color: var(--crimson-soft); text-shadow: 0 0 18px rgba(229, 72, 108, 0.55); }
+
+      /* ---- sections ---- */
+      section { margin-top: 64px; }
+      .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 22px; }
+      .sec-head h2 { margin: 0; font-size: 21px; font-weight: 600; letter-spacing: 0.3em; }
+      .sec-head::after { content: ""; flex: 1; height: 1px; background: var(--line); align-self: center; }
+
+      /* ---- player ---- */
+      .player {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 20px 22px;
+        backdrop-filter: blur(6px);
+      }
+      .player-top { display: flex; align-items: center; gap: 18px; }
+      .play-btn {
+        flex: none; width: 58px; height: 58px; border-radius: 50%;
+        border: 1px solid rgba(255, 125, 156, 0.6);
+        background: radial-gradient(circle at 32% 30%, rgba(255, 125, 156, 0.35), rgba(120, 40, 90, 0.35) 70%);
+        color: #fff; cursor: pointer;
+        display: grid; place-items: center;
+        box-shadow: 0 0 22px rgba(229, 72, 108, 0.35);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .play-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(229, 72, 108, 0.55); }
+      .play-btn:focus-visible { outline: 2px solid var(--crimson-soft); outline-offset: 3px; }
+      .play-btn svg { width: 22px; height: 22px; fill: currentColor; }
+      .track-meta { min-width: 0; }
+      .track-name { font-size: 17px; font-weight: 600; letter-spacing: 0.1em; margin: 0; }
+      .track-sub { font-size: 12.5px; color: var(--ink-faint); margin: 2px 0 0; letter-spacing: 0.06em; }
+      .times {
+        margin-left: auto; flex: none;
+        font-family: "Cormorant Garamond", serif; font-size: 16px; letter-spacing: 0.08em; color: var(--ink-soft);
+        font-variant-numeric: tabular-nums;
+      }
+      .seek { margin-top: 18px; }
+      .seek input[type="range"] {
+        -webkit-appearance: none; appearance: none;
+        width: 100%; height: 22px; background: transparent; cursor: pointer; margin: 0;
+      }
+      .seek input[type="range"]::-webkit-slider-runnable-track {
+        height: 4px; border-radius: 2px;
+        background: linear-gradient(90deg, var(--crimson) var(--fill, 0%), rgba(201, 184, 222, 0.25) var(--fill, 0%));
+      }
+      .seek input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none; appearance: none;
+        width: 15px; height: 15px; border-radius: 50%; margin-top: -5.5px;
+        background: #ffd9e4; border: 1px solid var(--crimson);
+        box-shadow: 0 0 10px rgba(229, 72, 108, 0.8);
+      }
+      .seek input[type="range"]::-moz-range-track {
+        height: 4px; border-radius: 2px; background: rgba(201, 184, 222, 0.25);
+      }
+      .seek input[type="range"]::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--crimson); }
+      .seek input[type="range"]::-moz-range-thumb {
+        width: 13px; height: 13px; border-radius: 50%;
+        background: #ffd9e4; border: 1px solid var(--crimson);
+        box-shadow: 0 0 10px rgba(229, 72, 108, 0.8);
+      }
+
+      /* ---- lyrics ---- */
+      .lyrics { font-size: 16.5px; }
+      .stanza { margin: 0 0 30px; }
+      .stanza p { margin: 0; white-space: pre-line; }
+      .stanza + .stanza { margin-top: 30px; }
+      .label {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 13.5px; letter-spacing: 0.34em; text-transform: uppercase;
+        color: var(--crimson-soft); margin: 0 0 10px;
+      }
+      .label.jp { font-family: inherit; letter-spacing: 0.3em; }
+      .stanza.dim p { color: var(--ink-faint); font-style: normal; }
+      .stanza.spoken-block p { font-size: 18px; line-height: 2.2; }
+      .stanza.spoken-block .accent { color: var(--crimson-soft); }
+      ruby rt { font-size: 0.52em; color: var(--ink-faint); letter-spacing: 0.05em; }
+
+      /* ---- credits ---- */
+      footer {
+        margin-top: 76px; padding-top: 30px; border-top: 1px solid var(--line);
+        text-align: center; font-size: 13.5px; color: var(--ink-faint); letter-spacing: 0.08em;
+      }
+      footer ul { list-style: none; margin: 0; padding: 0; }
+      footer li { margin: 5px 0; }
+      footer .fin {
+        margin-top: 26px; font-family: "Cormorant Garamond", serif; font-style: italic;
+        letter-spacing: 0.4em; text-indent: 0.4em; font-size: 14px; color: rgba(154, 134, 184, 0.75);
+      }
+
+      @media (max-width: 520px) {
+        /* スマホでは背景の固定とぼかしをやめて、スクロールを軽くする */
+        body { background-attachment: scroll; }
+        /* 背景レイヤーの常時アニメーションとぼかし・影も止める（絵は静止して残す） */
+        .bokeh { animation: none; filter: none; }
+        .bfly { animation: none; }
+        .bfly svg { filter: none; }
+        .player { backdrop-filter: none; background: rgba(38, 22, 66, 0.8); }
+        header { padding-top: 48px; }
+        .player { padding: 16px; }
+        .times { font-size: 14px; }
+        .lyrics { font-size: 15.5px; }
+        .bfly.f1 { top: auto; bottom: 5%; right: 4%; }
+        .bfly.f2 { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sky" aria-hidden="true">
+      <span class="bokeh b1"></span><span class="bokeh b2"></span><span class="bokeh b3"></span>
+      <span class="bokeh b4"></span><span class="bokeh b5"></span>
+      <span class="bfly f1">
+        <svg width="44" height="36" viewBox="0 0 44 36"><g fill="#b48cff"><ellipse cx="11" cy="11" rx="10" ry="7" transform="rotate(-28 11 11)" opacity="0.85"/><ellipse cx="33" cy="11" rx="10" ry="7" transform="rotate(28 33 11)" opacity="0.85"/><ellipse cx="13" cy="25" rx="7" ry="5" transform="rotate(24 13 25)" opacity="0.6"/><ellipse cx="31" cy="25" rx="7" ry="5" transform="rotate(-24 31 25)" opacity="0.6"/><rect x="20.6" y="6" width="2.8" height="24" rx="1.4" fill="#8f6fe8"/></g></svg>
+      </span>
+      <span class="bfly f2">
+        <svg width="30" height="25" viewBox="0 0 44 36"><g fill="#d98cb8"><ellipse cx="11" cy="11" rx="10" ry="7" transform="rotate(-28 11 11)" opacity="0.85"/><ellipse cx="33" cy="11" rx="10" ry="7" transform="rotate(28 33 11)" opacity="0.85"/><ellipse cx="13" cy="25" rx="7" ry="5" transform="rotate(24 13 25)" opacity="0.6"/><ellipse cx="31" cy="25" rx="7" ry="5" transform="rotate(-24 31 25)" opacity="0.6"/><rect x="20.6" y="6" width="2.8" height="24" rx="1.4" fill="#b06a94"/></g></svg>
+      </span>
+    </div>
+
+    <main>
+      <header>
+        <h1>紅の檻－蝶</h1>
+        <div class="rule"></div>
+        <p class="song-credits">
+          <span>作詞：ChatGPT(チャッピー)</span><span class="sep">/</span><span>作曲：Suno(v6Pro)</span><span class="sep">/</span><span>曲のプロンプト：manus</span><span class="sep">/</span><span>vocal：haziki yagawa</span>
+        </p>
+      </header>
+
+      <div class="video-wrap">
+        <div class="video-frame">
+          <video controls playsinline preload="none" width="960" height="640" poster="poster.webp" src="video.mp4"></video>
+        </div>
+        <p class="spoken">
+          それでも、<br />
+          もう一度だけ──<br />
+          <span class="last">君に、会いたい。</span>
+        </p>
+      </div>
+
+      <section aria-labelledby="song-head">
+        <div class="sec-head"><h2 id="song-head">曲</h2></div>
+        <div class="player">
+          <div class="player-top">
+            <button class="play-btn" id="playBtn" type="button" aria-label="再生">
+              <svg id="iconPlay" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+              <svg id="iconPause" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+            </button>
+            <div class="track-meta">
+              <p class="track-name">紅の檻－蝶</p>
+              <p class="track-sub">vocal：haziki yagawa</p>
+            </div>
+            <div class="times"><span id="curTime">0:00</span> / <span id="durTime">5:00</span></div>
+          </div>
+          <div class="seek">
+            <input type="range" id="seekBar" min="0" max="1000" value="0" step="1" aria-label="再生位置" />
+          </div>
+          <audio id="audio" src="song.m4a" preload="none"></audio>
+        </div>
+      </section>
+
+      <section aria-labelledby="lyrics-head">
+        <div class="sec-head"><h2 id="lyrics-head">歌詞</h2></div>
+        <div class="lyrics">
+          <div class="stanza dim">
+            <p class="label">Intro</p>
+            <p>Crimson Butterfly</p>
+          </div>
+
+          <div class="stanza">
+            <p class="label">Verse 1</p>
+            <p>花びらを濡らす　夜露の雫
+月明かりさえ　君を隠す
+この羽でどこへでも行けるのに
+帰る場所だけ　見つからない</p>
+          </div>
+          <div class="stanza">
+            <p>甘い蜜なら　いくらでもある
+綺麗な花なら　数えきれない
+それでも君のいない世界は
+色を失くした　鳥籠のよう</p>
+          </div>
+
+          <div class="stanza">
+            <p class="label">Pre-Chorus</p>
+            <p>触れた指先　ほどけた約束
+散った花弁を　集めるように
+忘れたいほど　忘れられない
+君の名前が　<ruby>羽<rt>はね</rt></ruby>を縛る</p>
+          </div>
+
+          <div class="stanza">
+            <p class="label">Chorus</p>
+            <p>嗚呼　紅の檻で
+舞えど　舞えど　君には届かない
+<ruby>紅<rt>くれない</rt></ruby>の空を　さまよって
+花よ　どうして　あの日のままで
+俺を待ってはくれないの</p>
+          </div>
+          <div class="stanza">
+            <p>自由な羽など　いらなかった
+君のそばで　眠れたなら
+風に千切れる　この想い
+それでも君を　探してる</p>
+          </div>
+
+          <div class="stanza">
+            <p class="label">Verse 2</p>
+            <p>枯れた<ruby>花弁<rt>はなびら</rt></ruby>を　拾い集めて
+戻らぬ季節に　口づける
+君がいないと　知りながら
+咲かない花を　夢に見る</p>
+          </div>
+          <div class="stanza">
+            <p>誰かの蜜に　酔う夜も
+誰かの腕に　抱かれても
+この<ruby>羽<rt>はね</rt></ruby>の奥に刻まれた
+君の色だけ　消せやしない</p>
+          </div>
+
+          <div class="stanza">
+            <p class="label">Pre-Chorus 2</p>
+            <p>綺麗な夢なら　捨てればいい
+そう言い聞かせ　何度も飛んだ
+けれど夜明けに　目を開ければ
+君のいない空が　広がるだけ</p>
+          </div>
+
+          <div class="stanza">
+            <p class="label">Chorus 2</p>
+            <p>嗚呼　紅の檻で
+舞えど　舞えど　君には届かない
+紅の檻を　すり抜けて
+花よ　今でも　覚えているか
+君のそばで舞った蝶を</p>
+          </div>
+          <div class="stanza">
+            <p>この羽がいつか　朽ち果てても
+君のもとへ　帰りたい
+散った<ruby>花弁<rt>はなびら</rt></ruby>に　頬を寄せ
+叶わぬ夢を　抱きしめる</p>
+          </div>
+
+          <div class="stanza dim">
+            <p class="label">Instrumental Break</p>
+          </div>
+
+          <div class="stanza">
+            <p class="label">Bridge</p>
+            <p>もしも君が　もう一度咲くなら
+俺は何度でも　蝶になろう
+たとえこの身が　灰になっても
+──君の香りを　忘れぬように</p>
+          </div>
+
+          <div class="stanza">
+            <p class="label">Outro</p>
+            <p>ひらり　ひらり
+紅の夜に　羽を閉じる
+君のいない<ruby>花園<rt>はなぞの</rt></ruby>で
+ひとり　夢を見る</p>
+          </div>
+
+          <div class="stanza spoken-block">
+            <p class="label">Spoken</p>
+            <p>それでも、
+もう一度だけ──
+<span class="accent">君に、会いたい。</span></p>
+          </div>
+          <div class="stanza dim">
+            <p>Crimson Butterfly…</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <ul>
+          <li>作詞：ChatGPT(チャッピー)</li>
+          <li>作曲：Suno(v6Pro)</li>
+          <li>曲のプロンプト：manus</li>
+          <li>vocal：haziki yagawa</li>
+          <li>動画：Muse</li>
+          <li>企画・演出：ユキ</li>
+        </ul>
+        <p class="fin">― 終 ―</p>
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        var audio = document.getElementById('audio');
+        var btn = document.getElementById('playBtn');
+        var iconPlay = document.getElementById('iconPlay');
+        var iconPause = document.getElementById('iconPause');
+        var seek = document.getElementById('seekBar');
+        var curEl = document.getElementById('curTime');
+        var durEl = document.getElementById('durTime');
+        var seeking = false;
+
+        function fmt(t) {
+          if (!isFinite(t) || t < 0) return '-:--';
+          var m = Math.floor(t / 60);
+          var s = Math.floor(t % 60);
+          return m + ':' + (s < 10 ? '0' : '') + s;
+        }
+        function setIcon(playing) {
+          iconPlay.style.display = playing ? 'none' : '';
+          iconPause.style.display = playing ? '' : 'none';
+          btn.setAttribute('aria-label', playing ? '一時停止' : '再生');
+        }
+        btn.addEventListener('click', function () {
+          if (audio.paused) { audio.play(); } else { audio.pause(); }
+        });
+        // 曲データは開いた直後には読み込まず、プレーヤーが画面に近づいたら
+        // メタデータだけ先に読み込む（本体は再生時に読み込む）。
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting) {
+              if (audio.readyState === 0) audio.load();
+              io.disconnect();
+            }
+          }, { rootMargin: '600px' });
+          io.observe(audio);
+        }
+        audio.addEventListener('play', function () { setIcon(true); });
+        audio.addEventListener('pause', function () { setIcon(false); });
+        audio.addEventListener('ended', function () { setIcon(false); });
+        audio.addEventListener('loadedmetadata', function () {
+          durEl.textContent = fmt(audio.duration);
+        });
+        audio.addEventListener('timeupdate', function () {
+          curEl.textContent = fmt(audio.currentTime);
+          if (!seeking && audio.duration) {
+            var ratio = audio.currentTime / audio.duration;
+            seek.value = Math.round(ratio * 1000);
+            seek.style.setProperty('--fill', (ratio * 100) + '%');
+          }
+        });
+        seek.addEventListener('input', function () {
+          seeking = true;
+          var ratio = seek.value / 1000;
+          seek.style.setProperty('--fill', (ratio * 100) + '%');
+          if (audio.duration) curEl.textContent = fmt(ratio * audio.duration);
+        });
+        seek.addEventListener('change', function () {
+          if (audio.duration) audio.currentTime = (seek.value / 1000) * audio.duration;
+          seeking = false;
+        });
+      })();
+    </script>
+  </body>
+</html>
